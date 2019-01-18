@@ -1,4 +1,5 @@
 ﻿using Prism.Events;
+using System.Xml.Linq;
 
 namespace Nat20.EventsModule
 {
@@ -9,11 +10,11 @@ namespace Nat20.EventsModule
 
     public class LoadEventArgs
     {
-        public LoadEventArgs(string folder)
+        public LoadEventArgs(XElement rootNode)
         {
-            Folder = folder;
+            RootNode = rootNode;
         }
 
-        public string Folder { get; }
+        public XElement RootNode { get; }
     }
 }

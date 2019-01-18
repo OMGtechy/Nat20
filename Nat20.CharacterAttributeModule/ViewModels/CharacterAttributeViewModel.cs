@@ -84,44 +84,34 @@ namespace Nat20.CharacterAttributeModule.ViewModels
         {
             eventAggregator.GetEvent<SaveEvent>().Subscribe(args =>
             {
-                // TODO: move the writing out of here, just make it generate the data?
-                //       should make it easier to check for unsaved changes by comparing data
-
-                var data = new XDocument
+                var saveData = new XElement
                 (
-                    new XElement
-                    (
-                        characterAttributesRootNodeName,
-                        new[]
-                        {
-                            new KeyValuePair<string, int>(strengthAttributeName, StrengthValue),
-                            new KeyValuePair<string, int>(dexterityAttributeName, DexterityValue),
-                            new KeyValuePair<string, int>(constitutionAttributeName, ConstitutionValue),
-                            new KeyValuePair<string, int>(intelligenceAttributeName, IntelligenceValue),
-                            new KeyValuePair<string, int>(wisdomAttributeName, WisdomValue)
-                        }.Select(attribute => new XAttribute(attribute.Key, attribute.Value)).ToArray()
-                    )
+                    characterAttributesRootNodeName,
+                    new[]
+                    {
+                        new KeyValuePair<string, int>(strengthAttributeName, StrengthValue),
+                        new KeyValuePair<string, int>(dexterityAttributeName, DexterityValue),
+                        new KeyValuePair<string, int>(constitutionAttributeName, ConstitutionValue),
+                        new KeyValuePair<string, int>(intelligenceAttributeName, IntelligenceValue),
+                        new KeyValuePair<string, int>(wisdomAttributeName, WisdomValue)
+                    }.Select(attribute => new XAttribute(attribute.Key, attribute.Value)).ToArray()
                 );
 
-                // TODO: test this with readonly files
-                // TODO: try saving invalid data (like a string)
-
-                Directory.CreateDirectory(args.Folder);
-                data.Save(Path.Combine(args.Folder, characterAttributesFileName));
+                args.Callback(saveData);
             });
 
             eventAggregator.GetEvent<LoadEvent>().Subscribe(args =>
             {
-                var data = XDocument.Load(Path.Combine(args.Folder, characterAttributesFileName));
-
                 // TODO: check for missing data?
                 // TODO: error checking for int parsing
 
-                StrengthValue =     int.Parse(data.Root.Attribute(strengthAttributeName).Value);
-                DexterityValue =    int.Parse(data.Root.Attribute(dexterityAttributeName).Value);
-                ConstitutionValue = int.Parse(data.Root.Attribute(constitutionAttributeName).Value);
-                IntelligenceValue = int.Parse(data.Root.Attribute(intelligenceAttributeName).Value);
-                WisdomValue =       int.Parse(data.Root.Attribute(wisdomAttributeName).Value);
+                var characterAttributesNode = args.RootNode.Element(characterAttributesRootNodeName);
+
+                StrengthValue =     int.Parse(characterAttributesNode.Attribute(strengthAttributeName).Value);
+                DexterityValue =    int.Parse(characterAttributesNode.Attribute(dexterityAttributeName).Value);
+                ConstitutionValue = int.Parse(characterAttributesNode.Attribute(constitutionAttributeName).Value);
+                IntelligenceValue = int.Parse(characterAttributesNode.Attribute(intelligenceAttributeName).Value);
+                WisdomValue =       int.Parse(characterAttributesNode.Attribute(wisdomAttributeName).Value);
             });
         }
     }
