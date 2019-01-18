@@ -68,13 +68,13 @@ namespace Nat20.CharacterAttributeModule.ViewModels
             }
         }
 
-        private string strengthAttributeName = "Strength";
-        private string dexterityAttributeName = "Dexterity";
-        private string constitutionAttributeName = "Constitution";
-        private string intelligenceAttributeName = "Intelligence";
-        private string wisdomAttributeName = "Wisdom";
+        private string StrengthAttributeName => "Strength";
+        private string DexterityAttributeName => "Dexterity";
+        private string ConstitutionAttributeName => "Constitution";
+        private string IntelligenceAttributeName => "Intelligence";
+        private string WisdomAttributeName => "Wisdom";
 
-        private string characterAttributesRootNodeName = "CharacterAttributes";
+        private string CharacterAttributesRootNodeName => "CharacterAttributes";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -84,14 +84,14 @@ namespace Nat20.CharacterAttributeModule.ViewModels
             {
                 var saveData = new XElement
                 (
-                    characterAttributesRootNodeName,
+                    CharacterAttributesRootNodeName,
                     new[]
                     {
-                        new KeyValuePair<string, int>(strengthAttributeName, StrengthValue),
-                        new KeyValuePair<string, int>(dexterityAttributeName, DexterityValue),
-                        new KeyValuePair<string, int>(constitutionAttributeName, ConstitutionValue),
-                        new KeyValuePair<string, int>(intelligenceAttributeName, IntelligenceValue),
-                        new KeyValuePair<string, int>(wisdomAttributeName, WisdomValue)
+                        new KeyValuePair<string, int>(StrengthAttributeName, StrengthValue),
+                        new KeyValuePair<string, int>(DexterityAttributeName, DexterityValue),
+                        new KeyValuePair<string, int>(ConstitutionAttributeName, ConstitutionValue),
+                        new KeyValuePair<string, int>(IntelligenceAttributeName, IntelligenceValue),
+                        new KeyValuePair<string, int>(WisdomAttributeName, WisdomValue)
                     }.Select(attribute => new XAttribute(attribute.Key, attribute.Value)).ToArray()
                 );
 
@@ -103,13 +103,13 @@ namespace Nat20.CharacterAttributeModule.ViewModels
                 // TODO: check for missing data?
                 // TODO: error checking for int parsing
 
-                var characterAttributesNode = args.RootNode.Element(characterAttributesRootNodeName);
+                var characterAttributesNode = args.RootNode.Element(CharacterAttributesRootNodeName);
 
-                StrengthValue = int.Parse(characterAttributesNode.Attribute(strengthAttributeName).Value);
-                DexterityValue = int.Parse(characterAttributesNode.Attribute(dexterityAttributeName).Value);
-                ConstitutionValue = int.Parse(characterAttributesNode.Attribute(constitutionAttributeName).Value);
-                IntelligenceValue = int.Parse(characterAttributesNode.Attribute(intelligenceAttributeName).Value);
-                WisdomValue = int.Parse(characterAttributesNode.Attribute(wisdomAttributeName).Value);
+                StrengthValue = int.Parse(characterAttributesNode.Attribute(StrengthAttributeName).Value);
+                DexterityValue = int.Parse(characterAttributesNode.Attribute(DexterityAttributeName).Value);
+                ConstitutionValue = int.Parse(characterAttributesNode.Attribute(ConstitutionAttributeName).Value);
+                IntelligenceValue = int.Parse(characterAttributesNode.Attribute(IntelligenceAttributeName).Value);
+                WisdomValue = int.Parse(characterAttributesNode.Attribute(WisdomAttributeName).Value);
             });
         }
     }
