@@ -68,19 +68,23 @@ namespace Nat20.CharacterAttributeModule.ViewModels
             }
         }
 
-        private string StrengthAttributeName => "Strength";
-        private string DexterityAttributeName => "Dexterity";
-        private string ConstitutionAttributeName => "Constitution";
-        private string IntelligenceAttributeName => "Intelligence";
-        private string WisdomAttributeName => "Wisdom";
+        private static string StrengthAttributeName => "Strength";
+        private static string DexterityAttributeName => "Dexterity";
+        private static string ConstitutionAttributeName => "Constitution";
+        private static string IntelligenceAttributeName => "Intelligence";
+        private static string WisdomAttributeName => "Wisdom";
 
-        private string CharacterAttributesRootNodeName => "CharacterAttributes";
+        private static string CharacterAttributesRootNodeName => "CharacterAttributes";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Creates an instance of CharacterAttributeViewModel.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator. May be null when under test.</param>
         public CharacterAttributeViewModel(IEventAggregator eventAggregator)
         {
-            eventAggregator.GetEvent<SaveEvent>().Subscribe(args =>
+            eventAggregator?.GetEvent<SaveEvent>().Subscribe(args =>
             {
                 var saveData = new XElement
                 (
@@ -98,19 +102,33 @@ namespace Nat20.CharacterAttributeModule.ViewModels
                 args.Callback(saveData);
             });
 
-            eventAggregator.GetEvent<LoadEvent>().Subscribe(args =>
+            eventAggregator?.GetEvent<LoadEvent>().Subscribe(args =>
             {
-                // TODO: check for missing data?
-                // TODO: error checking for int parsing
-
-                var characterAttributesNode = args.RootNode.Element(CharacterAttributesRootNodeName);
-
-                StrengthValue = int.Parse(characterAttributesNode.Attribute(StrengthAttributeName).Value);
-                DexterityValue = int.Parse(characterAttributesNode.Attribute(DexterityAttributeName).Value);
-                ConstitutionValue = int.Parse(characterAttributesNode.Attribute(ConstitutionAttributeName).Value);
-                IntelligenceValue = int.Parse(characterAttributesNode.Attribute(IntelligenceAttributeName).Value);
-                WisdomValue = int.Parse(characterAttributesNode.Attribute(WisdomAttributeName).Value);
+                // TODO: what if the node is missing?
+                // TODO: what if false is returned?
+                Load(this, args.RootNode.Element(CharacterAttributesRootNodeName));
             });
+        }
+
+        /// <summary>
+        /// Loads save data into a CharacterAttributeViewModel.
+        /// This is exposed as a method so that it can be tested more easily.
+        /// </summary>
+        /// <param name="target">Which CharacterAttributeViewModel to write the data to.</param>
+        /// <param name="characterAttributesNode">The save data to load.</param>
+        /// <returns>True if loading succeeded, false otherwise.</returns>
+        public static bool Load(CharacterAttributeViewModel target, XElement characterAttributesNode)
+        {
+            // TODO: check for missing data?
+            // TODO: error checking for int parsing
+
+            target.StrengthValue = int.Parse(characterAttributesNode.Attribute(StrengthAttributeName).Value);
+            target.DexterityValue = int.Parse(characterAttributesNode.Attribute(DexterityAttributeName).Value);
+            target.ConstitutionValue = int.Parse(characterAttributesNode.Attribute(ConstitutionAttributeName).Value);
+            target.IntelligenceValue = int.Parse(characterAttributesNode.Attribute(IntelligenceAttributeName).Value);
+            target.WisdomValue = int.Parse(characterAttributesNode.Attribute(WisdomAttributeName).Value);
+
+            return true;
         }
     }
 }
