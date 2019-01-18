@@ -1,10 +1,9 @@
 ﻿using Nat20.EventsModule;
 using Prism.Events;
-using System.IO;
-using System.Linq;
-using System.Xml.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace Nat20.CharacterAttributeModule.ViewModels
 {
@@ -76,7 +75,6 @@ namespace Nat20.CharacterAttributeModule.ViewModels
         private string wisdomAttributeName = "Wisdom";
 
         private string characterAttributesRootNodeName = "CharacterAttributes";
-        private string characterAttributesFileName = "CharacterAttributes.xml";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -107,11 +105,11 @@ namespace Nat20.CharacterAttributeModule.ViewModels
 
                 var characterAttributesNode = args.RootNode.Element(characterAttributesRootNodeName);
 
-                StrengthValue =     int.Parse(characterAttributesNode.Attribute(strengthAttributeName).Value);
-                DexterityValue =    int.Parse(characterAttributesNode.Attribute(dexterityAttributeName).Value);
+                StrengthValue = int.Parse(characterAttributesNode.Attribute(strengthAttributeName).Value);
+                DexterityValue = int.Parse(characterAttributesNode.Attribute(dexterityAttributeName).Value);
                 ConstitutionValue = int.Parse(characterAttributesNode.Attribute(constitutionAttributeName).Value);
                 IntelligenceValue = int.Parse(characterAttributesNode.Attribute(intelligenceAttributeName).Value);
-                WisdomValue =       int.Parse(characterAttributesNode.Attribute(wisdomAttributeName).Value);
+                WisdomValue = int.Parse(characterAttributesNode.Attribute(wisdomAttributeName).Value);
             });
         }
     }
