@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nat20.ShellModule", "Nat20.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nat20.RegionsModule", "Nat20.RegionsModule\Nat20.RegionsModule.csproj", "{0B720AAA-8CC7-4395-BC81-5F22004E07EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nat20.EventsModule", "Nat20.EventsModule\Nat20.EventsModule.csproj", "{D3B686D7-F7AB-46FE-81E0-97942E42A9E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0B720AAA-8CC7-4395-BC81-5F22004E07EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B720AAA-8CC7-4395-BC81-5F22004E07EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B720AAA-8CC7-4395-BC81-5F22004E07EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3B686D7-F7AB-46FE-81E0-97942E42A9E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3B686D7-F7AB-46FE-81E0-97942E42A9E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3B686D7-F7AB-46FE-81E0-97942E42A9E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3B686D7-F7AB-46FE-81E0-97942E42A9E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

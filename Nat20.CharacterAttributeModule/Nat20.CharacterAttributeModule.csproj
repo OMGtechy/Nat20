@@ -77,6 +77,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nat20.EventsModule\Nat20.EventsModule.csproj">
+      <Project>{D3B686D7-F7AB-46FE-81E0-97942E42A9E0}</Project>
+      <Name>Nat20.EventsModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nat20.RegionsModule\Nat20.RegionsModule.csproj">
       <Project>{0B720AAA-8CC7-4395-BC81-5F22004E07EE}</Project>
       <Name>Nat20.RegionsModule</Name>

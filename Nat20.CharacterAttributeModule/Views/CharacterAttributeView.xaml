@@ -16,14 +16,14 @@
 
         <!-- TODO: could generalise this and have an Attribute class, register the attributes and have it auto-work this stuff out -->
         <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding StrengthLabel}" />
-        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding StrengthValue}" />
+        <TextBox   Grid.Column="0" Grid.Row="1" Text="{Binding StrengthValue}" />
         <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding DexterityLabel}" />
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding DexterityValue}" />
+        <TextBox   Grid.Column="1" Grid.Row="1" Text="{Binding DexterityValue}" />
         <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding ConstitutionLabel}" />
-        <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding ConstitutionValue}" />
+        <TextBox   Grid.Column="2" Grid.Row="1" Text="{Binding ConstitutionValue}" />
         <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding IntelligenceLabel}" />
-        <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding IntelligenceValue}" />
+        <TextBox   Grid.Column="3" Grid.Row="1" Text="{Binding IntelligenceValue}" />
         <TextBlock Grid.Column="4" Grid.Row="0" Text="{Binding WisdomLabel}" />
-        <TextBlock Grid.Column="4" Grid.Row="1" Text="{Binding WisdomValue}" />
+        <TextBox   Grid.Column="4" Grid.Row="1" Text="{Binding WisdomValue}" />
     </Grid>
 </UserControl>

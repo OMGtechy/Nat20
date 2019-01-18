@@ -128,6 +128,10 @@
       <Project>{0dbfaaea-156b-4110-9ebf-0f97d7a2402a}</Project>
       <Name>Nat20.CharacterAttributeModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nat20.EventsModule\Nat20.EventsModule.csproj">
+      <Project>{D3B686D7-F7AB-46FE-81E0-97942E42A9E0}</Project>
+      <Name>Nat20.EventsModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nat20.RegionsModule\Nat20.RegionsModule.csproj">
       <Project>{0b720aaa-8cc7-4395-bc81-5f22004e07ee}</Project>
       <Name>Nat20.RegionsModule</Name>

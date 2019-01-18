@@ -4,7 +4,19 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:regions="clr-namespace:Nat20.RegionsModule;assembly=Nat20.RegionsModule"
         Title="{Binding Title}" Height="450" Width="800">
-    <StackPanel Margin="5">
-        <ContentControl prism:RegionManager.RegionName="{x:Static regions:Regions.CharacterRegion}" />
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
+            <ContentControl prism:RegionManager.RegionName="{x:Static regions:Regions.CharacterRegion}" />
+        </StackPanel>
+        <Button Grid.Row="1" Grid.Column="0" Content="Load" Command="{Binding LoadCommand}" />
+        <Button Grid.Row="1" Grid.Column="1" Content="Save" Command="{Binding SaveCommand}" />
+    </Grid>
 </Window>
